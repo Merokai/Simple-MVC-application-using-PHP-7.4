@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_pw_shh
+      MYSQL_DATABASE: coursphp
+      MYSQL_USER: coursphp
+      MYSQL_PASSWORD: coursphp
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+  web:
+    build: ./php-pdo-mysql
+    container_name: php_web
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true

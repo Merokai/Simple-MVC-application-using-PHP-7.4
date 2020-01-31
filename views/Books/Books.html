@@ -1,0 +1,43 @@
+{% extends "Layout/Layout.html" %}
+
+{% block title %}
+<title>Liste des livres - Bouc'inerie</title>
+{% endblock %}
+
+{% block content %}
+<ul class="list-unstyled container">
+    <li class="row justify-content-between border">
+        <div class="col-sm bg-light">
+            <strong>Titre</strong>
+        </div>
+        <div class="col-sm bg-light">
+            <strong>Auteur</strong>
+        </div>
+        <div class="col-sm bg-light">
+            <strong>Propriétaire</strong>
+        </div>
+        <div class="col-sm-2 bg-light">
+            <strong>Actions</strong>
+        </div>
+    </li>
+    {% for book in books %}
+    <li class="row justify-content-between border-bottom">
+        <div class="col-sm bg-light">
+            {{ book.title }}
+        </div>
+        <div class="col-sm bg-light">
+            {{ book.author }}
+        </div>
+        <div class="col-sm bg-light">
+            {{ book.owner.displayName }}
+        </div>
+        <div class="col-sm-2 bg-light">
+            {% if book.owner.email == user.email or user.role == "admin" %}
+            <a href="/book/edit/{{ book.id }}">Modifier</a>
+            <a href="/book/delete/{{ book.id }}">Supprimer</a>
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

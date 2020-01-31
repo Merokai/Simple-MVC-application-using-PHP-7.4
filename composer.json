@@ -1,0 +1,22 @@
+{
+  "name": "antoine.molina/amotasks",
+  "authors": [
+    {
+      "name": "Antoine MOLINA",
+      "email": "antoine.molina@cgi.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "^3.0",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "core/",
+      "Models\\": "models/",
+      "Repositories\\": "repositories/",
+      "Utils\\": "utils/",
+      "Controllers\\": "controllers/"
+    }
+  }
+}

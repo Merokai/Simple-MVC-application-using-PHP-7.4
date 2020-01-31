@@ -1,0 +1,33 @@
+{% extends "Layout/Layout.html" %}
+
+{% block title %}
+<title>Ajout d'un livre - Bouc'inerie</title>
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-row justify-content-around">
+    <form class="form" method="post">
+        <h2 class="h2">
+            {% if edit %}
+            Modification
+            {% else %}
+            Ajout
+            {% endif %}
+        </h2>
+        <div>
+            <label for="title">Titre</label>
+            <input id="title" name="title" type="text" value="{{book.title}}">
+        </div>
+        <div>
+            <label for="author">Auteur</label>
+            <input id="author" name="author" type="text" value="{{book.author}}">
+        </div>
+        <div>
+            <button type="submit">Envoyer</button>
+        </div>
+        {% if edit %}
+        <input name="id" type="hidden" value="{{book.id}}">
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

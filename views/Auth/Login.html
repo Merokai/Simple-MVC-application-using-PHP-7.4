@@ -1,0 +1,29 @@
+{% extends "Layout/Layout.html" %}
+
+{% block title %}
+<title>Connexion - Bouc'inerie</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if user %}
+    <h1>Connecté</h1>
+    <p> Bienvenue {{ user["displayName"] }}</p>
+    {% else %}
+    <h1>Connexion</h1>
+    <form action="/auth/login" class="form" method="post">
+        <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+        </div>
+        <div>
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="password">
+        </div>
+        <div>
+            <button type="submit">Envoyer</button>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

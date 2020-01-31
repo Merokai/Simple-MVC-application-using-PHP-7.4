@@ -1,0 +1,31 @@
+{% extends "Layout/Layout.html" %}
+
+{% block title %}
+<title>Inscription - Bouc'inerie</title>
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if curr_user %}
+    <h1>Modification</h1>
+    {% else %}
+    <h1>Inscription</h1>
+    <form method="post">
+        <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" value="{{ curr_user.email }}">
+        </div>
+        <div>
+            <label for="displayName">Nom d'affichage</label>
+            <input id="displayName" name="displayName" type="text" value="{{ curr_user.displayName }}">
+        </div>
+        <div>
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="password">
+        </div>
+        <div>
+            <button type="submit">Envoyer</button>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

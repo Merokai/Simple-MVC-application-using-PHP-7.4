@@ -1,0 +1,45 @@
+{% extends "Layout/Layout.html" %}
+
+{% block title %}
+<title>Liste des utilisateurs - Bouc'inerie</title>
+{% endblock %}
+
+{% block content %}
+<ul class="list-unstyled container">
+    <li class="row justify-content-between border">
+        <div class="col-sm bg-light">
+            <strong>Email</strong>
+        </div>
+        <div class="col-sm bg-light">
+            <strong>Nom d'affichage</strong>
+        </div>
+        <div class="col-sm bg-light">
+            <strong>Role</strong>
+        </div>
+        <div class="col-sm-2 bg-light">
+            <strong>Actions</strong>
+        </div>
+    </li>
+    {% for user in users %}
+    <li class="row justify-content-between border-bottom">
+        <div class="col-sm bg-light">
+            {{ user.email }}
+        </div>
+        <div class="col-sm bg-light">
+            {{ user.displayName }}
+        </div>
+        <div class="col-sm bg-light">
+            {{ user.role }}
+        </div>
+        <div class="col-sm-2 bg-light">
+            {% if user.role == "visitor" %}
+            <a href="/user/promote/{{ user.email }}">Promouvoir</a>
+            {% else %}
+            <a href="/user/demote/{{ user.email }}">Retrograder</a>
+            {% endif %}
+            <a href="/user/delete/{{ user.email }}">Supprimer</a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
